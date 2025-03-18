@@ -1,13 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import todo_icon from "../assets/todo_icon.png";
 import TodoItems from "./TodoItems";
+import useTodoList from "./useTodoList";
 
 const Todo = () => {
-  const [todoList, setTodoList] = useState(
+  /* improved state management. a separate custom hook is used
+   const [todoList, setTodoList] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
       : []
-  );
+  ); */
+
+  //custom hook
+  const [todoList, setTodoList] = useTodoList();
   const inputRef = useRef();
 
   /* ADD */
@@ -45,9 +50,9 @@ const Todo = () => {
     });
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todoList));
-  }, [todoList]);
+  }, [todoList]); */
 
   return (
     <div className="bg-white place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-[550px] rounded-xl">
